@@ -1,0 +1,270 @@
+// !! IMPORTANT README:
+
+// You may add additional external JS and CSS as needed to complete the project, however the current external resource MUST remain in place for the tests to work. BABEL must also be left in place. 
+
+/***********
+INSTRUCTIONS:
+  - Select the project you would 
+    like to complete from the dropdown 
+    menu.
+  - Click the "RUN TESTS" button to
+    run the tests against the blank 
+    pen.
+  - Click the "TESTS" button to see 
+    the individual test cases. 
+    (should all be failing at first)
+  - Start coding! As you fulfill each
+    test case, you will see them go   
+    from red to green.
+  - As you start to build out your 
+    project, when tests are failing, 
+    you should get helpful errors 
+    along the way!
+    ************/
+
+// PLEASE NOTE: Adding global style rules using the * selector, or by adding rules to body {..} or html {..}, or to all elements within body or html, i.e. h1 {..}, has the potential to pollute the test suite's CSS. Try adding: * { color: red }, for a quick example!
+
+// Once you have read the above messages, you can delete all comments. 
+
+// app.js
+
+const { Component, VERSION } = ng.core;
+
+@Component({
+  selector: 'my-app',
+  host: {
+    '(document:keydown)': 'onKeyDown($event)'
+  },
+  template: `
+<div class="container-fluid table-top">
+  <h1>{{title}}</h1>
+  <div class="row toy">
+    <div class="col" [ngClass]="running ? 'buttons' : 'disabledButtons'">
+      <div class="row pads">
+        <div class="drum-pad" onclick="document.getElementById('Q').play()" (click)="onClickMe()" id="bim"><audio src="https://s3.amazonaws.com/freecodecamp/simonSound1.mp3" class="clip" id="Q"></audio>Q</div>
+
+        <div class="drum-pad" onclick="document.getElementById('W').play()" (click)="onClickMe()" id="bam"><audio src="https://s3.amazonaws.com/freecodecamp/simonSound1.mp3" class="clip" id="W"></audio>W</div>
+
+        <div class="drum-pad"  onclick="document.getElementById('E').play()" (click)="onClickMe()" id="boom"><audio src="https://s3.amazonaws.com/freecodecamp/simonSound1.mp3" class="clip" id="E"></audio>E</div>
+
+      </div>
+      <div class="row pads">
+
+        <div class="drum-pad" onclick="document.getElementById('A').play()" (click)="onClickMe()" id="biff"><audio src="https://s3.amazonaws.com/freecodecamp/simonSound1.mp3" class="clip" id="A"></audio>A</div>
+
+        <div class="drum-pad" onclick="document.getElementById('S').play()" (click)="onClickMe()" id="boff"><audio src="https://s3.amazonaws.com/freecodecamp/simonSound1.mp3" class="clip" id="S"></audio>S</div>
+
+        <div class="drum-pad" onclick="document.getElementById('D').play()" (click)="onClickMe()" id="baff"><audio src="https://s3.amazonaws.com/freecodecamp/simonSound1.mp3" class="clip" id="D"></audio>D</div>
+
+      </div>
+      <div class="row pads">
+
+        <div class="drum-pad" onclick="document.getElementById('Z').play()" (click)="onClickMe()" id="ping"><audio src="https://s3.amazonaws.com/freecodecamp/simonSound1.mp3" class="clip" id="Z"></audio>Z</div>
+
+        <div class="drum-pad" onclick="document.getElementById('X').play()" (click)="onClickMe()" id="pang"><audio src="https://s3.amazonaws.com/freecodecamp/simonSound1.mp3" class="clip" id="X"></audio>X</div>
+
+        <div class="drum-pad" onclick="document.getElementById('C').play()" (click)="onClickMe()" id="pong"><audio src="https://s3.us-east-2.amazonaws.com/fccdrummachinefiles/162313__britishpirate93__16-inch-crash.wav" class="clip" id="C"></audio>C</div>
+
+      </div> <!-- ends row -->
+    </div> <!-- ends buttons -->
+
+  <div class="col controls">
+
+    <div class="row power">
+      <div class="col text-center">
+          Power
+        <div class="row">
+          <div class="powerSwitch">
+            <div [ngClass]="running ? 'onOffSwitchOff' : 'onOffSwitchOn'" (click)="powerToggle()">
+            </div>
+          </div>
+        </div> 
+      </div>
+	 </div>
+    
+    <div class="row">
+      <div class="justify-content" id="display">
+        {{ dude }} 
+        </div>
+    </div>
+    
+
+
+    <div class="row justify-content volume">
+		  <div class="col text-center">
+        Volume slider will go here
+      </div>
+	  </div>
+	
+<div class="row justify-content banks">
+	<div class="col">
+	  <div class="row text-center banksLabel">
+      <div class="col text-center">
+		Banks
+</div>
+	  </div>
+	  <div class="row">
+		<div class="banksSwitch" [ngStyle]="{'pointer-event':running === true ? auto : none }">
+		  <div [ngClass]="bankOne ? 'bankOneOn' : 'bankOneOff'" (click)="banksToggle()">
+		  </div>
+		</div>
+	  </div>
+	</div> 
+</div>
+    
+
+
+
+
+  </div>
+
+  </div>
+</div> <!-- end table-top -->
+  `
+})
+class AppComponent {  
+  title="FCC Drum Machine 20000";
+  running: boolean = false;
+  bankOne: boolean = true;
+  constructor() {
+   console.log(this.running);
+  }
+  
+  
+  onKeyDown(ev:KeyboardEvent) {
+    var letter = ev.key;
+    console.log(`The user just pressed ${ev.key}!`);
+    switch(ev.key) {
+      case 'q':
+       document.getElementById('bim').click();
+       break;
+      case 'w':
+        document.getElementById('bam').click();
+        break;
+      case 'e':
+        document.getElementById('boom').click();
+        break;
+        case 'a':
+        document.getElementById('biff').click();
+        break;
+       case 's':
+        document.getElementById('boff').click();
+        break;
+       case 'd':
+         document.getElementById('baff').click();
+         break;
+       case 'z':
+         document.getElementById('ping').click();
+         break;
+       case 'x':
+         document.getElementById('pang').click();
+         break;
+       case 'c':
+         document.getElementById('pong').click();
+         break;
+       default:
+         console.log('That\'s just a generic key. No sound.');
+    }
+      
+  }
+  
+  onClickMe() {
+	
+	if(!this.running) {
+    console.log('Dude, it is not on!')
+    return;
+  } else {
+		console.log("Boom!!!", event.srcElement.id);
+		var dude = event.srcElement.id;
+		switch(dude) {
+			case 'bim':
+			  this.dude = dude;
+			  break;
+			case 'bam':
+			  this.dude = dude;
+			  break;
+			case 'boom':
+			  this.dude = dude;
+			  break;
+			case 'biff':
+			  this.dude = dude;
+			  break;
+			case 'boff':
+			  this.dude = dude;
+			  break;
+			case 'baff':
+			  this.dude = dude;
+			  break;
+			case 'ping':
+			  this.dude = dude;
+			  break;
+			case 'pang':
+			  this.dude = dude;
+			  break;
+			case 'pong':
+			  this.dude = dude;
+			  break;
+			default:
+			  console.log('That\'s just a generic key. No sound.');
+		}	
+	} 
+}
+  
+    powerToggle() {
+      console.log('Here I am!!');
+      console.log('running was ', this.running);
+      this.running = !this.running;
+      this.dude = "";
+      console.log('running is now ', this.running);
+    }
+  
+    banksToggle() {
+      console.log('Here I am!!');
+      console.log('bank was ', this.bankOne);
+      this.bankOne = !this.bankOne;
+      console.log('bank is now ', this.bankOne);
+    }
+
+}
+
+
+// main.js
+const { BrowserModule } = ng.platformBrowser;
+const { NgModule } = ng.core;
+const { CommonModule } = ng.common;
+const { FormsModule } =  ng.forms
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    FormsModule,
+    CommonModule,
+  ],
+  declarations: [AppComponent],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic; 
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err => console.error(err));
+
+
+
+
+
+/*
+
+<audio
+        controls
+        src="/media/examples/t-rex-roar.mp3">
+            Your browser does not support the
+            <code>audio</code> element.
+    </audio>
+    
+    audio controls src="https://s3.amazonaws.com/freecodecamp/simonSound1.mp3" class="clip" id="Q">
+    </audio>
+    */

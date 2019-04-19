@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+@mixin left-switch {
+  margin-top: 2px;
+  width: 15px;
+  height: 15px;
+  background-color: LightBlue;
+  margin-left: 0px;
+  padding-left: 0px;
+  border-left: 0px;
+  float: right;
+  border-radius: 2px;
+}
+
+@mixin right-switch {
+  margin-top: 2px;
+  width: 15px;
+  height: 15px;
+  background-color: LightBlue;
+  margin-left: 0px;
+  padding-left: 0px;
+  border-left: 0px;
+  float: left;
+  border-radius: 2px;
+}
+
+@mixin switches {
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  background-color: black;
+  margin: auto;
+  margin-top: 0px;
+  border-radius: 3px;
+}
+
+
+.body {
+  height: 100%;
+  min-height: 100%;
+}
+
+.table-top {
+    background-color: #8B4513;
+    height: 600px;
+    font-family: Poppins;
+}
+
+.toy {
+  margin: auto;
+  margin-top: 60px;
+  width: 785px;
+  height: 410px;
+  border: 5px solid black;
+  background-color: grey;
+  border-radius: 5%;
+  padding: 25px;
+}
+
+.disabledButtons {
+  padding-top: 40px;
+  padding: 5px;
+  background: dimgrey;
+  border: 3px solid red;
+  border-radius: 5%;
+  pointer-events: none;
+}
+
+.buttons {
+  padding-top: 40px;
+  padding: 5px;
+  background: dimgrey;
+  border: 3px solid red;
+  border-radius: 5%;
+  pointer-events: auto;
+}
+
+.pads {
+  margin-right: 0px;
+  margin-left: 0px;
+  
+  .drum-pad {
+    border: 1px solid black;
+    border-radius: 10%;
+    height: 100px;
+    line-height: 100px;
+    width: 100px;
+    background-color: darkslategrey;
+    display: inline-block;
+    margin: 5px;
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    font-family: Poppins;
+  }
+}
+
+.controls {
+  padding: 20px;
+ 
+  .powerSwitch {
+    @include switches;
+    
+    .onOffSwitchOff {
+      @include left-switch;
+    }
+
+    .onOffSwitchOn {
+      @include right-switch;
+    }
+  }
+  
+  #display {
+    border: 2px solid black;
+    background-color: dimgrey;
+    color: black;
+    font-weight: bold;
+    width: 200px;
+    height: 50px;
+    line-height: 50px;
+    margin: auto;
+    margin-top: 50px;
+    text-align: center;
+  }
+
+  .volume {
+    padding: 30px;
+  }
+  
+  .banks {
+    padding-top: 20px;
+    
+    .banksSwitch {
+      @include switches;
+      
+      .bankOneOn {
+        @include right-switch;
+      }
+
+      .bankOneOff {
+        @include left-switch;
+      }
+    }
+  }
+}
+
+
+/* Slider:
+
+https://codepen.io/emilcarlsson/pen/PPNLPy
+
+*/
+
+
+
